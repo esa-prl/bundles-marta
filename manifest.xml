@@ -1,0 +1,21 @@
+<package>
+  <description brief="Scripts and configs for MaRTA">
+  
+  </description>
+  <author>/</author>
+  <license></license>
+  <url>http://</url>
+  <logo>http://</logo>
+
+  <depend package="bundles/rock" />
+  <!--
+   To add any dependencies use the depend tag
+  <depend package="dummy-dependency-0" />
+	...
+  <depend package="dummy-dependency-n-1" />
+  <depend package="dummy-dependency-n" />
+  -->
+  <depend package="drivers/soem" />
+  <depend package="drivers/platform_driver_ethercat" />
+  <depend package="drivers/orogen/platform_driver_ethercat" />
+</package>
