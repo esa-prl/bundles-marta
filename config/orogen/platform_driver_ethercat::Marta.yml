@@ -1,31 +1,115 @@
 --- name:default
 # device address in the system
-can_dev_address: enp1s0
-# 1 for Peak-Systems interface, 5 for EtherCAT
-can_dev_type: 5
-# activate/deactivate watchdog on can network
-watchdog: 0
+dev_address: enp1s0
+# number of slaves in the platform
+num_slaves: 29
 # system current measurement factor to convert from internal to physical units
 current_factor: 41.6
 # system voltage measurement factor to convert from internal to physical units
 voltage_factor: 3.93
-# system bogie angle measurement factor to convert from internal to physical units
-bogie_factor: 72
-# Number of motors in the platform
-num_motors: 20
-# Number of force torque sensors in the platform
-num_fts: 6
-# Number of can nodes in the platform
-num_nodes: 26
-# parameters of platform can nodes
-can_parameters:
-  CanId: [7, 18, 10, 15, 4, 1, 8, 19, 11, 16, 5, 2, 9, 20, 12, 17, 6, 3, 13, 14, 23, 29, 22, 28, 25, 26]
-  Type: [WHEEL_DRIVE, WHEEL_DRIVE, WHEEL_DRIVE, WHEEL_DRIVE, WHEEL_DRIVE, WHEEL_DRIVE, WHEEL_STEER, WHEEL_STEER, WHEEL_STEER, WHEEL_STEER, WHEEL_STEER, WHEEL_STEER, WHEEL_WALK, WHEEL_WALK, WHEEL_WALK, WHEEL_WALK, WHEEL_WALK, WHEEL_WALK, MAST_PAN, MAST_TILT, FT_SENSOR, FT_SENSOR, FT_SENSOR, FT_SENSOR, FT_SENSOR, FT_SENSOR]
-  Name: [WHEEL_DRIVE_FL, WHEEL_DRIVE_FR, WHEEL_DRIVE_CL, WHEEL_DRIVE_CR, WHEEL_DRIVE_BL, WHEEL_DRIVE_BR, WHEEL_STEER_FL, WHEEL_STEER_FR, WHEEL_STEER_CL, WHEEL_STEER_CR, WHEEL_STEER_BL, WHEEL_STEER_BR, WHEEL_WALK_FL, WHEEL_WALK_FR, WHEEL_WALK_CL, WHEEL_WALK_CR, WHEEL_WALK_BL, WHEEL_WALK_BR, MAST_PAN, MAST_TILT, FTS_FL, FTS_FR, FTS_CL, FTS_CR, FTS_BL, FTS_BR]
-  Active: [ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE, ACTIVE]
+
+# motor slave mapping, names and configuration
+motor_mapping:
+    - {slave: 1, name: WHEEL_DRIVE_BR, config: *drive_config, active: true}
+    - {slave: 2, name: WHEEL_STEER_BR, config: *steer_config, active: true}
+    - {slave: 3, name: WHEEL_WALK_BR, config: *walk_config, active: true}
+    - {slave: 4, name: WHEEL_DRIVE_BL, config: *drive_config, active: true}
+    - {slave: 5, name: WHEEL_STEER_BL, config: *steer_config, active: true}
+    - {slave: 6, name: WHEEL_WALK_BL, config: *walk_config, active: true}
+    - {slave: 7, name: WHEEL_DRIVE_FL, config: *drive_config, active: true}
+    - {slave: 8, name: WHEEL_STEER_FL, config: *steer_config, active: true}
+    - {slave: 9, name: WHEEL_WALK_FL, config: *walk_config, active: true}
+    - {slave: 10, name: WHEEL_DRIVE_CL, config: *drive_config, active: true}
+    - {slave: 11, name: WHEEL_STEER_CL, config: *steer_config, active: true}
+    - {slave: 12, name: WHEEL_WALK_CL, config: *walk_config, active: true}
+    - {slave: 13, name: MAST_PAN, config: *pan_config, active: true}
+    - {slave: 14, name: MAST_TILT, config: *tilt_config, active: true}
+    - {slave: 15, name: WHEEL_DRIVE_CR, config: *drive_config, active: true}
+    - {slave: 16, name: WHEEL_STEER_CR, config: *steer_config, active: true}
+    - {slave: 17, name: WHEEL_WALK_CR, config: *walk_config, active: true}
+    - {slave: 18, name: WHEEL_DRIVE_FR, config: *drive_config, active: true}
+    - {slave: 19, name: WHEEL_STEER_FR, config: *steer_config, active: true}
+    - {slave: 20, name: WHEEL_WALK_FR, config: *walk_config, active: true}
+
+# fts slave mapping and names
+fts_mapping:
+    - {slave: 22, name: FTS_CL}
+    - {slave: 23, name: FTS_FL}
+    - {slave: 25, name: FTS_BL}
+    - {slave: 26, name: FTS_BR}
+    - {slave: 28, name: FTS_CR}
+    - {slave: 29, name: FTS_FR}
+
+# analog identifiers and desirable names
+analog_input_mapping:
+    - {slave: 4, name: SYSTEM_VOLTAGE}
+    - {slave: 5, name: SYSTEM_CURRENT}
+
+# passive joints identifiers and desirable names
+passive_joint_mapping:
+    - {slave: 0, name: LEFT_PASSIVE}
+    - {slave: 1, name: RIGHT_PASSIVE}
+    - {slave: 5, name: BACK_PASSIVE}
+
+# motor parameters of the wheel drives (using relative encoder on motor)
+&drive_config
+  dPtpVelDefaultIncrS: 10000
+  dVelMaxEncIncrS: 68267    # corresponds to 8000 rpm
+  dPosLimitLowIncr: -100000000
+  dBeltRatio: 1
+  iSign: 1
+  iEncOffsetIncr: 0
+  dCurrentToTorque: 0.0181
+  dDecIncrS2: 200000
+  dCurrMax: 1.94
+  dGearRatio: 438.46154
+  bIsSteer: 0
+  iEncIncrPerRevMot: 512
+  dAccIncrS2: 200000
+  dPosLimitHighIncr: 100000000
+  dAnalogFactor: 0.00067139
+  dNominalCurrent: 0.657
+
+# motor parameters of the steer drives (using absolute encoder on load)
+&steer_config
+  dPtpVelDefaultIncrS: 150
+  dVelMaxEncIncrS: 249    # corresponds to 8000 rpm
+  dPosLimitLowIncr: -1138 # corresponds to 100 deg
+  dBeltRatio: 1
+  iSign: -1
+  iEncOffsetIncr: 0
+  dCurrentToTorque: 0.0181
+  dDecIncrS2: 2000
+  dCurrMax: 1.94
+  dGearRatio: 1.0
+  bIsSteer: 1
+  iEncIncrPerRevMot: 4096
+  dAccIncrS2: 2000
+  dPosLimitHighIncr: 1138
+  dAnalogFactor: 0.00067139
+  dNominalCurrent: 0.657
+
+# motor parameters of the walk drives (using absolute encoder on load)
+&walk_config
+  dPtpVelDefaultIncrS: 100
+  dVelMaxEncIncrS: 249    # corresponds to 8000 rpm
+  dPosLimitLowIncr: -1365 # corresponds to 120 deg
+  dBeltRatio: 1
+  iSign: 1
+  iEncOffsetIncr: 0
+  dCurrentToTorque: 0.0181
+  dDecIncrS2: 2000
+  dCurrMax: 1.94
+  dGearRatio: 1.0
+  bIsSteer: 1
+  iEncIncrPerRevMot: 4096
+  dAccIncrS2: 2000
+  dPosLimitHighIncr: 1365
+  dAnalogFactor: 0.00067139
+  dNominalCurrent: 0.657
 
 # motor parameters of the pan drive
-param_gear_motor_pan:
+&pan_config
   dPtpVelDefaultIncrS: 10000
   dVelMaxEncIncrS: 68267    # corresponds to 8000 rpm
   dPosLimitLowIncr: -230400 # corresponds to 135 deg
@@ -44,7 +128,7 @@ param_gear_motor_pan:
   dNominalCurrent: 0.081
 
 # motor parameters of the tilt drive
-param_gear_motor_tilt:
+&tilt_config
   dPtpVelDefaultIncrS: 10000
   dVelMaxEncIncrS: 68267    # corresponds to 8000 rpm
   dPosLimitLowIncr: -136533 # corresponds to 80 deg
@@ -61,76 +145,3 @@ param_gear_motor_tilt:
   dPosLimitHighIncr: 136533
   dAnalogFactor: 0
   dNominalCurrent: 0.081
-
-# motor parameters of the walk drives (using absolute encoder on load)
-param_gear_motor_walk:
-  dPtpVelDefaultIncrS: 100
-  dVelMaxEncIncrS: 249    # corresponds to 8000 rpm
-  dPosLimitLowIncr: -1365 # corresponds to 120 deg
-  dBeltRatio: 1
-  iSign: 1
-  iEncOffsetIncr: 0
-  dCurrentToTorque: 0.0181
-  dDecIncrS2: 2000
-  dCurrMax: 1.94
-  dGearRatio: 1.0
-  bIsSteer: 1
-  iEncIncrPerRevMot: 4096
-  dAccIncrS2: 2000
-  dPosLimitHighIncr: 1365
-  dAnalogFactor: 0.00067139
-  dNominalCurrent: 0.657
-
-# motor parameters of the steer drives (using absolute encoder on load)
-param_gear_motor_steer:
-  dPtpVelDefaultIncrS: 150
-  dVelMaxEncIncrS: 249    # corresponds to 8000 rpm
-  dPosLimitLowIncr: -1138 # corresponds to 100 deg
-  dBeltRatio: 1
-  iSign: -1
-  iEncOffsetIncr: 0
-  dCurrentToTorque: 0.0181
-  dDecIncrS2: 2000
-  dCurrMax: 1.94
-  dGearRatio: 1.0
-  bIsSteer: 1
-  iEncIncrPerRevMot: 4096
-  dAccIncrS2: 2000
-  dPosLimitHighIncr: 1138
-  dAnalogFactor: 0.00067139
-  dNominalCurrent: 0.657
-
-# motor parameters of the wheel drives (using relative encoder on motor)
-param_gear_motor_wheel:
-  dPtpVelDefaultIncrS: 10000
-  dVelMaxEncIncrS: 68267    # corresponds to 8000 rpm
-  dPosLimitLowIncr: -100000000
-  dBeltRatio: 1
-  iSign: 1
-  iEncOffsetIncr: 0
-  dCurrentToTorque: 0.0181
-  dDecIncrS2: 200000
-  dCurrMax: 1.94
-  dGearRatio: 438.46154
-  bIsSteer: 0
-  iEncIncrPerRevMot: 512
-  dAccIncrS2: 200000
-  dPosLimitHighIncr: 100000000
-  dAnalogFactor: 0.00067139
-  dNominalCurrent: 0.657
-
-#Analog identifiers and desirable names
-analog_readings_config:
-    - id: 4
-      name: SYSTEM_VOLTAGE
-    - id: 5
-      name: SYSTEM_CURRENT
-
-#Passive joints identifiers and desirable names
-passive_readings_config:
-    - id: 0
-      name: LEFT_PASSIVE
-    - id: 1
-      name: RIGHT_PASSIVE
-    - id: 5
-      name: BACK_PASSIVE
