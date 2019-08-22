@@ -102,26 +102,26 @@ configs:
 
 # elmo drives slave mapping, names and configuration
 drive_mapping:
-    - {slave_id: 1,  name: ELMO_DRIVE_BR, config: *drive_config, temp_sensor: true}
-    - {slave_id: 2,  name: ELMO_STEER_BR, config: *steer_config, temp_sensor: true}
-    - {slave_id: 3,  name: ELMO_WALK_BR,  config: *walk_config,  temp_sensor: true}
-    - {slave_id: 4,  name: ELMO_DRIVE_BL, config: *drive_config, temp_sensor: true}
-    - {slave_id: 5,  name: ELMO_STEER_BL, config: *steer_config, temp_sensor: true}
-    - {slave_id: 6,  name: ELMO_WALK_BL,  config: *walk_config,  temp_sensor: true}
-    - {slave_id: 7,  name: ELMO_DRIVE_FL, config: *drive_config, temp_sensor: true}
-    - {slave_id: 8,  name: ELMO_STEER_FL, config: *steer_config, temp_sensor: true}
-    - {slave_id: 9,  name: ELMO_WALK_FL,  config: *walk_config,  temp_sensor: true}
-    - {slave_id: 10, name: ELMO_DRIVE_CL, config: *drive_config, temp_sensor: true}
-    - {slave_id: 11, name: ELMO_STEER_CL, config: *steer_config, temp_sensor: true}
-    - {slave_id: 12, name: ELMO_WALK_CL,  config: *walk_config,  temp_sensor: true}
-    - {slave_id: 13, name: ELMO_PAN,      config: *pan_config,   temp_sensor: false}
-    - {slave_id: 14, name: ELMO_TILT,     config: *tilt_config,  temp_sensor: false}
-    - {slave_id: 15, name: ELMO_DRIVE_CR, config: *drive_config, temp_sensor: true}
-    - {slave_id: 16, name: ELMO_STEER_CR, config: *steer_config, temp_sensor: true}
-    - {slave_id: 17, name: ELMO_WALK_CR,  config: *walk_config,  temp_sensor: true}
-    - {slave_id: 18, name: ELMO_DRIVE_FR, config: *drive_config, temp_sensor: true}
-    - {slave_id: 19, name: ELMO_STEER_FR, config: *steer_config, temp_sensor: true}
-    - {slave_id: 20, name: ELMO_WALK_FR,  config: *walk_config,  temp_sensor: true}
+    - {slave_id: 1,  name: ELMO_DRIVE_BR, config: *drive_config}
+    - {slave_id: 2,  name: ELMO_STEER_BR, config: *steer_config}
+    - {slave_id: 3,  name: ELMO_WALK_BR,  config: *walk_config}
+    - {slave_id: 4,  name: ELMO_DRIVE_BL, config: *drive_config}
+    - {slave_id: 5,  name: ELMO_STEER_BL, config: *steer_config}
+    - {slave_id: 6,  name: ELMO_WALK_BL,  config: *walk_config}
+    - {slave_id: 7,  name: ELMO_DRIVE_FL, config: *drive_config}
+    - {slave_id: 8,  name: ELMO_STEER_FL, config: *steer_config}
+    - {slave_id: 9,  name: ELMO_WALK_FL,  config: *walk_config}
+    - {slave_id: 10, name: ELMO_DRIVE_CL, config: *drive_config}
+    - {slave_id: 11, name: ELMO_STEER_CL, config: *steer_config}
+    - {slave_id: 12, name: ELMO_WALK_CL,  config: *walk_config}
+    - {slave_id: 13, name: ELMO_PAN,      config: *pan_config}
+    - {slave_id: 14, name: ELMO_TILT,     config: *tilt_config}
+    - {slave_id: 15, name: ELMO_DRIVE_CR, config: *drive_config}
+    - {slave_id: 16, name: ELMO_STEER_CR, config: *steer_config}
+    - {slave_id: 17, name: ELMO_WALK_CR,  config: *walk_config}
+    - {slave_id: 18, name: ELMO_DRIVE_FR, config: *drive_config}
+    - {slave_id: 19, name: ELMO_STEER_FR, config: *steer_config}
+    - {slave_id: 20, name: ELMO_WALK_FR,  config: *walk_config}
 
 # fts slave mapping and names
 fts_mapping:
