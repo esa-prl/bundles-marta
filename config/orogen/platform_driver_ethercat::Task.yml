@@ -21,8 +21,8 @@ drive_params:
     gear_ratio: 438.4615
     encoder_increments: 512
     encoder_on_output: false
-    profile_velocity_rad_sec: 0.3
-    profile_acceleration_rad_sec_sec: 1.5
+    profile_velocity_rad_sec: 1.0
+    profile_acceleration_rad_sec_sec: 10.0
 
   # motor parameters of the steer drives
   - &steer_elmo
@@ -35,8 +35,8 @@ drive_params:
     gear_ratio: 2192.3077
     encoder_increments: 4096
     encoder_on_output: true
-    profile_velocity_rad_sec: 0.2
-    profile_acceleration_rad_sec_sec: 1.0
+    profile_velocity_rad_sec: 0.3
+    profile_acceleration_rad_sec_sec: 3.0
 
   # motor parameters of the walk/deployment drives
   - &walk_elmo
@@ -49,8 +49,8 @@ drive_params:
     gear_ratio: 2192.3077
     encoder_increments: 4096
     encoder_on_output: true
-    profile_velocity_rad_sec: 0.15
-    profile_acceleration_rad_sec_sec: 0.75
+    profile_velocity_rad_sec: 0.2
+    profile_acceleration_rad_sec_sec: 2.0
 
   # motor parameters of the pan drive
   - &pan_elmo
@@ -63,8 +63,8 @@ drive_params:
     gear_ratio: 1600
     encoder_increments: 384 # used instead of 512 to correct for wrong pin connection
     encoder_on_output: false
-    profile_velocity_rad_sec: 0.07
-    profile_acceleration_rad_sec_sec: 0.35
+    profile_velocity_rad_sec: 0.1
+    profile_acceleration_rad_sec_sec: 1.0
 
   # motor parameters of the tilt drive
   - &tilt_elmo
@@ -77,8 +77,8 @@ drive_params:
     gear_ratio: 1600
     encoder_increments: 384 # used instead of 512 to correct for wrong pin connection
     encoder_on_output: false
-    profile_velocity_rad_sec: 0.07
-    profile_acceleration_rad_sec_sec: 0.35
+    profile_velocity_rad_sec: 0.1
+    profile_acceleration_rad_sec_sec: 1.0
 
 # elmo slave mapping, names and parameters
 drive_mapping:
@@ -180,6 +180,6 @@ active_joint_mapping:
 
 # passive joint names and mapping to drives
 passive_joint_mapping:
-    - {name: LEFT_PASSIVE,  drive: ELMO_DRIVE_FL, enabled: false}
-    - {name: RIGHT_PASSIVE, drive: ELMO_DRIVE_FR, enabled: false}
-    - {name: BACK_PASSIVE,  drive: ELMO_DRIVE_BL, enabled: false}
+    - {name: LEFT_PASSIVE,  drive: ELMO_DRIVE_FL, enabled: true}
+    - {name: RIGHT_PASSIVE, drive: ELMO_DRIVE_FR, enabled: true}
+    - {name: BACK_PASSIVE,  drive: ELMO_DRIVE_BL, enabled: true}
