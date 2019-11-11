@@ -55,7 +55,6 @@ Orocos::Process.run 'control' do
     # Log
     #Orocos.log_all_ports
     #platform_driver.log_all_ports
-    #pancam_panorama.log_all_ports
 
     # Connect
     joystick.raw_command.connect_to                       motion_translator.raw_command
