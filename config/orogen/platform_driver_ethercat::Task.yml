@@ -187,4 +187,4 @@ active_joint_mapping:
 passive_joint_mapping:
     - {name: LEFT_PASSIVE,  drive: ELMO_DRIVE_FL, enabled: true}
     - {name: RIGHT_PASSIVE, drive: ELMO_DRIVE_FR, enabled: true}
-    - {name: BACK_PASSIVE,  drive: ELMO_DRIVE_BL, enabled: true}
+    - {name: BACK_PASSIVE,  drive: ELMO_DRIVE_BR, enabled: true}
